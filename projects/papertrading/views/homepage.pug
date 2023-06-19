@@ -1,0 +1,25 @@
+doctype html
+
+html(lang="en-US")
+
+head
+  title Paper Trading
+  meta(charset="UTF-8")
+
+  body
+    header
+      h1 Paper Trading Homepage
+      block headerlinks
+
+    main
+      - let kinds = Object.keys(flash || {})
+      if kinds.length > 0
+        ul
+          each kind in kinds
+            each message in flash[kind]
+              li.flash(class=kind)= message
+
+    p1 Search for all your stocks!
+    form(action=`/stock/search` method="get")
+      label(for="search") Type in a ticker below:
+      input(type="text" name="search" placeholder="AAPL")
